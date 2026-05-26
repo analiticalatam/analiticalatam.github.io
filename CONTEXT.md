@@ -8,9 +8,12 @@
 - **Repositorio 2 (backup):** https://github.com/analiticalatam/peru-elecciones-2026
 
 ## Archivos clave
-- `/Users/catherinemilagros/peru-elecciones-2026/index.html` — página principal
-- `/Users/catherinemilagros/peru-elecciones-2026/mapa_peru_v10_actualizado.html` — mapa interactivo
-- `/Users/catherinemilagros/peru-elecciones-2026/voto_extranjero.html` — tabla voto exterior
+- `/Users/catherinemilagros/Desktop/peru-elecciones-2026/index.html` — página principal
+- `/Users/catherinemilagros/Desktop/peru-elecciones-2026/mapa_peru_v10_actualizado.html` — mapa interactivo 2026
+- `/Users/catherinemilagros/Desktop/peru-elecciones-2026/voto_extranjero.html` — tabla voto exterior 2026
+- `/Users/catherinemilagros/Desktop/peru-elecciones-2026/mapa_peru_2021.html` — mapa interactivo 2021
+- `/Users/catherinemilagros/Desktop/peru-elecciones-2026/voto_extranjero_2021.html` — tabla voto exterior 2021
+- `/Users/catherinemilagros/Desktop/peru-elecciones-2026/comparacion_2021_2026.html` — comparación lado a lado 2021 vs 2026
 - Backups en `/Users/catherinemilagros/Downloads/backup_2026/`
 
 ## Feature: Botón Hero con float ovalado
@@ -24,7 +27,15 @@
 
 ## Feature: Voto extranjero
 - Botón permanente debajo de la leyenda de candidatos en el mapa
-- Abre `voto_extranjero.html` con tabla de 64 países
+- Abre `voto_extranjero.html` (2026) o `voto_extranjero_2021.html` (2021) con tabla de países
+
+## Feature: Comparación 2021 vs 2026
+- Dos mapas D3 lado a lado (460×620px), modo ganador solamente
+- Cross-highlighting: hover en un departamento lo resalta en ambos mapas
+- Tooltips muestran datos de ambos años simultáneamente
+- Tabla comparativa nacional: Electores, Votos emitidos, Participación, Blancos, Nulos, Blancos+Nulos con diferencias
+- Leyenda con candidatos y conteo de regiones ganadas
+- Callao inset en ambos mapas
 
 ## Equipo
 - Catherine Paredes — Analista Política Perú (catherine.jpeg)

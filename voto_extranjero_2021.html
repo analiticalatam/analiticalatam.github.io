@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1.0'>
+<title>Voto Extranjero — Perú 2021</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f0f0f;color:#f0ede8;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:28px 16px}
+h1{font-family:Georgia,serif;font-size:24px;font-weight:700;color:#f0ede8;margin-bottom:2px}
+.sub{font-size:11px;color:#666;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+.stats{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;justify-content:center}
+.stat{background:#141414;border:.5px solid #1e1e1e;border-radius:8px;padding:7px 12px;text-align:center;min-width:72px}
+.stat .v{font-size:15px;font-weight:700;color:#f0ede8}
+.stat .l{font-size:8px;color:#777;text-transform:uppercase;letter-spacing:.06em;margin-top:1px}
+.legend{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-bottom:14px}
+.leg-item{display:flex;align-items:center;gap:4px;font-size:10px;color:#aaa;padding:3px 7px;background:#141414;border:.5px solid #1e1e1e;border-radius:4px}
+.leg-dot{width:8px;height:8px;border-radius:50%}
+.wrap{width:100%;max-width:1000px;overflow-y:auto;max-height:calc(100vh-240px);border:.5px solid #1a1a1a;border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:11px}
+th{font-size:8px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#666;text-align:left;padding:6px 5px;border-bottom:1px solid #222;position:sticky;top:0;background:#0f0f0f;z-index:1;white-space:nowrap}
+th.r{text-align:right}
+td{padding:4px 5px;border-bottom:.5px solid #181818;color:#999;white-space:nowrap}
+td.r{text-align:right;font-weight:600;color:#f0ede8;font-variant-numeric:tabular-nums}
+.cont{font-size:9px;font-weight:600;color:#666;letter-spacing:.06em;text-transform:uppercase;padding:6px 5px 2px}
+.win-dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:4px;vertical-align:middle}
+.win-name{vertical-align:middle;font-size:10px}
+a{color:#666;text-decoration:none;margin-top:16px;font-size:11px;transition:color .12s}
+a:hover{color:#d4904a}
+@media(max-width:600px){
+  body{padding:12px 6px}
+  h1{font-size:18px}
+  table{font-size:10px}
+  td,th{padding:3px 4px}
+}
+</style>
+</head>
+<body>
+<h1>Votación de Peruanos en el Extranjero</h1>
+<div class='sub'>Elecciones Presidenciales 2021 · ONPE</div>
+
+<div class='stats'>
+  <div class='stat'><div class='v' id='s1'>—</div><div class='l'>Hábiles</div></div>
+  <div class='stat'><div class='v' id='s2'>—</div><div class='l'>Emitidos</div></div>
+  <div class='stat'><div class='v' id='s3'>—</div><div class='l'>Válidos</div></div>
+  <div class='stat'><div class='v' id='s4'>—</div><div class='l'>Blancos</div></div>
+  <div class='stat'><div class='v' id='s5'>—</div><div class='l'>Nulos</div></div>
+  <div class='stat'><div class='v' id='s6'>—</div><div class='l'>Países</div></div>
+</div>
+
+<div class='legend' id='legend'></div>
+
+<div class='wrap'>
+<table>
+<thead><tr><th>País</th><th class='r'>Hábiles</th><th class='r'>Emitidos</th><th class='r'>% Part.</th><th class='r'>Válidos</th><th class='r'>Votos&nbsp;Gan.</th><th class='r'>B+N</th><th class='r'>Dif.</th><th class='r'>Ganador</th></tr></thead>
+<tbody id='tbody'></tbody>
+</table>
+</div>
+
+  <div style='margin-top:20px;display:flex;gap:12px;align-items:center'>
+    <a href='mapa_peru_2021.html' style='display:inline-flex;align-items:center;gap:6px;color:#aaa;text-decoration:none;font-size:13px;font-weight:600;padding:8px 18px;border:.5px solid #444;border-radius:8px;transition:all .12s' onmouseover="this.style.borderColor='#d4904a';this.style.color='#f0ede8'" onmouseout="this.style.borderColor='#444';this.style.color='#aaa'">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Volver al mapa
+    </a>
+    <span style='font-size:11px;color:#555'>Mapa electoral presidencial 2021</span>
+  </div>
+
+<script>
+const RAW=[["AFRICA", "ARGELIA", "YONHY MARCELO LESCANO ANCIETA", 2, 7, 25, 8, 1, 0], ["AFRICA", "MARRUECOS", "YONHY MARCELO LESCANO ANCIETA", 2, 7, 55, 9, 2, 0], ["AFRICA", "SUDAFRICA", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 4, 4, 215, 32, 1, 27], ["AMERICA", "ARGENTINA", "KEIKO SOFIA FUJIMORI HIGUCHI", 5694, 28760, 143189, 46994, 9985, 8249], ["AMERICA", "BOLIVIA", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 451, 2196, 7420, 3304, 736, 372], ["AMERICA", "BRASIL", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 604, 3109, 16341, 4943, 603, 1231], ["AMERICA", "CANADA", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 940, 3026, 19271, 4288, 315, 947], ["AMERICA", "COLOMBIA", "KEIKO SOFIA FUJIMORI HIGUCHI", 293, 1359, 4733, 1754, 283, 112], ["AMERICA", "COSTA RICA", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 260, 983, 2871, 1237, 157, 97], ["AMERICA", "CUBA", "VERONIKA FANNY MENDOZA FRISCH", 17, 27, 175, 34, 6, 1], ["AMERICA", "ECUADOR", "KEIKO SOFIA FUJIMORI HIGUCHI", 321, 1580, 5349, 2426, 574, 272], ["AMERICA", "EL SALVADOR", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 21, 51, 160, 57, 3, 3], ["AMERICA", "ESTADOS UNIDOS DE AMERICA", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 11403, 40535, 309602, 55340, 4493, 10312], ["AMERICA", "GUATEMALA", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 53, 157, 447, 180, 14, 9], ["AMERICA", "GUAYANA FRANCESA", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 43, 193, 581, 270, 64, 13], ["AMERICA", "HAITI", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 2, 3, 9, 3, 0, 0], ["AMERICA", "HONDURAS", "HERNANDO DE SOTO POLAR", 16, 51, 280, 54, 2, 1], ["AMERICA", "MEXICO", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 297, 1224, 5462, 1325, 57, 44], ["AMERICA", "NICARAGUA", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 15, 54, 190, 65, 9, 2], ["AMERICA", "PANAMA", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 257, 944, 3173, 1242, 184, 114], ["AMERICA", "PUERTO RICO", "HERNANDO DE SOTO POLAR", 46, 189, 776, 213, 19, 5], ["AMERICA", "REPUBLICA DOMINICANA", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 106, 463, 1066, 522, 34, 25], ["AMERICA", "TRINIDAD TOBAGO", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 3, 8, 17, 8, 0, 0], ["AMERICA", "URUGUAY", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 69, 444, 1421, 588, 109, 35], ["ASIA", "EMIRATOS ARABES UNIDOS", "HERNANDO DE SOTO POLAR", 9, 26, 115, 28, 0, 2], ["ASIA", "FILIPINAS", "GEORGE PATRICK FORSYTH SOMMER", 2, 7, 37, 8, 0, 1], ["ASIA", "INDIA", "YONHY MARCELO LESCANO ANCIETA", 1, 4, 58, 4, 0, 0], ["ASIA", "INDONESIA", "HERNANDO DE SOTO POLAR", 2, 5, 16, 5, 0, 0], ["ASIA", "IRAN", "HERNANDO DE SOTO POLAR", 7, 26, 70, 34, 7, 1], ["ASIA", "ISRAEL", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 33, 132, 1260, 162, 25, 5], ["ASIA", "JAPON", "KEIKO SOFIA FUJIMORI HIGUCHI", 2005, 5296, 34076, 6735, 779, 660], ["ASIA", "JORDANIA", "YONHY MARCELO LESCANO ANCIETA", 5, 13, 26, 17, 2, 2], ["ASIA", "MALASIA", "HERNANDO DE SOTO POLAR", 2, 4, 13, 4, 0, 0], ["ASIA", "QATAR", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 10, 21, 44, 22, 0, 1], ["ASIA", "REPUBLICA DE COREA DEL SUR", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 20, 79, 244, 94, 12, 3], ["ASIA", "REPUBLICA POPULAR CHINA", "HERNANDO DE SOTO POLAR", 29, 116, 706, 139, 16, 7], ["ASIA", "SINGAPUR", "HERNANDO DE SOTO POLAR", 13, 30, 74, 32, 0, 2], ["ASIA", "TAILANDIA", "HERNANDO DE SOTO POLAR", 5, 17, 54, 20, 3, 0], ["ASIA", "TURQUIA", "HERNANDO DE SOTO POLAR", 6, 20, 61, 22, 0, 2], ["ASIA", "VIETNAM", "HERNANDO DE SOTO POLAR", 2, 4, 16, 4, 0, 0], ["EUROPA", "ALEMANIA", "VERONIKA FANNY MENDOZA FRISCH", 660, 2166, 9644, 2388, 184, 38], ["EUROPA", "AUSTRIA", "VERONIKA FANNY MENDOZA FRISCH", 64, 245, 925, 269, 17, 7], ["EUROPA", "BELGICA", "VERONIKA FANNY MENDOZA FRISCH", 347, 1224, 3051, 1417, 152, 41], ["EUROPA", "BIELORRUSIA", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 9, 15, 25, 17, 1, 1], ["EUROPA", "CROACIA", "HERNANDO DE SOTO POLAR", 5, 12, 48, 12, 0, 0], ["EUROPA", "DINAMARCA", "VERONIKA FANNY MENDOZA FRISCH", 37, 108, 514, 119, 11, 0], ["EUROPA", "ESPAÑA", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 6405, 34338, 152212, 46855, 6452, 6065], ["EUROPA", "FINLANDIA", "VERONIKA FANNY MENDOZA FRISCH", 38, 94, 379, 105, 10, 1], ["EUROPA", "FRANCIA", "VERONIKA FANNY MENDOZA FRISCH", 788, 2685, 10270, 3216, 401, 130], ["EUROPA", "GRAN BRETAÑA", "VERONIKA FANNY MENDOZA FRISCH", 208, 931, 4547, 1073, 110, 32], ["EUROPA", "GRAN DUCADO DE LUXEMBURGO", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 22, 83, 219, 98, 10, 5], ["EUROPA", "GRECIA", "VERONIKA FANNY MENDOZA FRISCH", 14, 56, 293, 77, 0, 21], ["EUROPA", "HOLANDA", "VERONIKA FANNY MENDOZA FRISCH", 127, 420, 1784, 468, 38, 10], ["EUROPA", "HUNGRIA", "VERONIKA FANNY MENDOZA FRISCH", 16, 65, 176, 71, 5, 1], ["EUROPA", "IRLANDA", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 13, 46, 185, 51, 4, 1], ["EUROPA", "ITALIA", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 4704, 22845, 94590, 33227, 4081, 6301], ["EUROPA", "MACEDONIA DEL NORTE", "HERNANDO DE SOTO POLAR", 3, 3, 7, 3, 0, 0], ["EUROPA", "NORUEGA", "VERONIKA FANNY MENDOZA FRISCH", 27, 67, 333, 73, 5, 1], ["EUROPA", "POLONIA", "VERONIKA FANNY MENDOZA FRISCH", 8, 35, 186, 39, 2, 2], ["EUROPA", "PORTUGAL", "HERNANDO DE SOTO POLAR", 28, 79, 377, 94, 9, 6], ["EUROPA", "PRINCIPADO DE ANDORRA", "HERNANDO DE SOTO POLAR", 10, 47, 169, 62, 12, 3], ["EUROPA", "REPUBLICA CHECA", "VERONIKA FANNY MENDOZA FRISCH", 16, 62, 179, 65, 3, 0], ["EUROPA", "RUMANIA", "VERONIKA FANNY MENDOZA FRISCH", 6, 33, 86, 35, 1, 1], ["EUROPA", "RUSIA", "VERONIKA FANNY MENDOZA FRISCH", 32, 124, 414, 147, 11, 12], ["EUROPA", "SUECIA", "VERONIKA FANNY MENDOZA FRISCH", 264, 744, 3395, 941, 102, 95], ["EUROPA", "SUIZA", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 507, 2078, 7706, 2622, 251, 293], ["EUROPA", "UCRANIA", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 17, 49, 84, 51, 1, 1], ["OCEANIA", "AUSTRALIA", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 447, 1568, 5669, 1884, 141, 175], ["OCEANIA", "NUEVA ZELANDA", "RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA", 45, 177, 553, 197, 15, 5]];
+
+const COLORS={"OLLANTA MOISES HUMALA TASSO":"#8e44ad","MARCO ANTONIO ARANA ZEGARRA":"#e74c3c","JULIO ARMANDO GUZMAN CACERES":"#9b59b6","RAFAEL SANTOS NORMAND":"#2980b9","GEORGE PATRICK FORSYTH SOMMER":"#16a085","YONHY MARCELO LESCANO ANCIETA":"#f39c12","HERNANDO DE SOTO POLAR":"#1abc9c","DANIEL URRESTI ELERA":"#e67e22","VERONIKA FANNY MENDOZA FRISCH":"#d35400","ALBERTO BEINGOLEA DELGADO":"#3498db","KEIKO SOFIA FUJIMORI HIGUCHI":"#e67e22","JOSE ANTONIO VEGA ANTONIO":"#2ecc71","RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA":"#00b4d8","CIRO ALFREDO GALVEZ HERRERA":"#95a5a6","DANIEL SALAVERRY VILLA":"#f1c40f","JOSE PEDRO CASTILLO TERRONES":"#d32f2f","ANDRES ALCANTARA PEREZ":"#7f8c8d","CESAR ACUÑA PERALTA":"#2c3e50"};
+const SHORT={"OLLANTA MOISES HUMALA TASSO":"Humala","MARCO ANTONIO ARANA ZEGARRA":"Arana","JULIO ARMANDO GUZMAN CACERES":"Guzmán","RAFAEL SANTOS NORMAND":"Santos","GEORGE PATRICK FORSYTH SOMMER":"Forsyth","YONHY MARCELO LESCANO ANCIETA":"Lescano","HERNANDO DE SOTO POLAR":"De Soto","DANIEL URRESTI ELERA":"Urresti","VERONIKA FANNY MENDOZA FRISCH":"Mendoza","ALBERTO BEINGOLEA DELGADO":"Beingolea","KEIKO SOFIA FUJIMORI HIGUCHI":"Fujimori","JOSE ANTONIO VEGA ANTONIO":"Vega","RAFAEL BERNARDO LOPEZ ALIAGA CAZORLA":"López Aliaga","CIRO ALFREDO GALVEZ HERRERA":"Gálvez","DANIEL SALAVERRY VILLA":"Salaverry","JOSE PEDRO CASTILLO TERRONES":"Castillo","ANDRES ALCANTARA PEREZ":"Alcántara","CESAR ACUÑA PERALTA":"Acuña"};
+const fmt=n=>n.toLocaleString('es-PE');
+
+document.getElementById('s1').textContent=fmt(857718);
+document.getElementById('s2').textContent=fmt(227902);
+document.getElementById('s3').textContent=fmt(161573);
+document.getElementById('s4').textContent=fmt(30524);
+document.getElementById('s5').textContent=fmt(35805);
+document.getElementById('s6').textContent=RAW.length;
+
+const lg=document.getElementById('legend');
+Object.entries(COLORS).forEach(([k,c])=>{
+  const d=document.createElement('div');d.className='leg-item';
+  d.innerHTML='<span class="leg-dot" style="background:'+c+'"></span>'+SHORT[k];
+  lg.appendChild(d);
+});
+
+const tb=document.getElementById('tbody');
+let lastCont='';
+let tH=0,tE=0,tV=0,tWV=0,tB=0,tN=0;
+RAW.forEach(function(r){
+  var cont=r[0],pais=r[1],winner=r[2],wv=r[3],tv=r[4],h=r[5],e=r[6],b=r[7],n=r[8];
+  tH+=h;tE+=e;tV+=tv;tWV+=wv;tB+=b;tN+=n;
+  if(cont!==lastCont){
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td class="cont" colspan="9">'+cont+'</td>';
+    tb.appendChild(tr);
+    lastCont=cont;
+  }
+  var tr=document.createElement('tr');
+  var c=COLORS[winner]||'#666';
+  var s=SHORT[winner]||winner;
+  var pp=h>0?(e/h*100).toFixed(1):'-';
+  var dif=wv-(b+n);
+  var difC=dif>=0?'#4caf50':'#d97a7a';
+  var difS=dif>=0?'+'+fmt(dif):fmt(dif);
+  tr.innerHTML=
+    '<td style="padding-left:14px">'+pais+'</td>'+
+    '<td class="r">'+fmt(h)+'</td>'+
+    '<td class="r">'+fmt(e)+'</td>'+
+    '<td class="r" style="color:#888;font-weight:400">'+pp+'%</td>'+
+    '<td class="r">'+fmt(tv)+'</td>'+
+    '<td class="r">'+fmt(wv)+'</td>'+
+    '<td class="r" style="color:#d97a7a">'+fmt(b+n)+'</td>'+
+    '<td class="r" style="color:'+difC+';font-weight:700">'+difS+'</td>'+
+    '<td class="r"><span class="win-dot" style="background:'+c+'"></span><span class="win-name">'+s+'</span></td>';
+  tb.appendChild(tr);
+});
+var tr=document.createElement('tr');
+var tdif=tWV-(tB+tN);
+var tdifC=tdif>=0?'#4caf50':'#d97a7a';
+var tdifS=tdif>=0?'+'+fmt(tdif):fmt(tdif);
+tr.innerHTML=
+  '<td style="padding:6px 5px;font-weight:600;color:#aaa;border-top:1px solid #333">Total</td>'+
+  '<td class="r" style="padding:6px 5px;border-top:1px solid #333;color:#f0ede8;font-weight:700">'+fmt(tH)+'</td>'+
+  '<td class="r" style="padding:6px 5px;border-top:1px solid #333;color:#f0ede8;font-weight:700">'+fmt(tE)+'</td>'+
+  '<td class="r" style="padding:6px 5px;border-top:1px solid #333;color:#888;font-weight:400">'+(tH>0?(tE/tH*100).toFixed(1):'-')+'%</td>'+
+  '<td class="r" style="padding:6px 5px;border-top:1px solid #333;color:#f0ede8;font-weight:700">'+fmt(tV)+'</td>'+
+  '<td class="r" style="padding:6px 5px;border-top:1px solid #333;color:#f0ede8;font-weight:700">'+fmt(tWV)+'</td>'+
+  '<td class="r" style="padding:6px 5px;border-top:1px solid #333;color:#d97a7a;font-weight:700">'+fmt(tB+tN)+'</td>'+
+  '<td class="r" style="padding:6px 5px;border-top:1px solid #333;color:'+tdifC+';font-weight:700">'+tdifS+'</td>'+
+  '<td style="padding:6px 5px;border-top:1px solid #333"></td>';
+tb.appendChild(tr);
+</script>
+</body>
+</html>
