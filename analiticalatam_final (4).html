@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AnalíticaLatam — Consultoría Política Internacional</title>
+<meta name="description" content="Analizamos los procesos políticos de América Latina desde una perspectiva comparada. Consultoría electoral, mapeo territorial e investigación aplicada.">
+<meta name="keywords" content="política, américa latina, consultoría electoral, análisis político, elecciones, ciencia política">
+<meta property="og:title" content="AnalíticaLatam — En perspectiva comparada">
+<meta property="og:description" content="Análisis de procesos políticos en América Latina desde una perspectiva comparada.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌎</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+:root {
+  --bg:      #1C1F26;
+  --bg2:     #2E3340;
+  --surface: #F4F5F7;
+  --white:   #F0F2F5;
+  --muted:   #9BA3B2;
+  --accent:  #6B8FAA;
+  --btn:     #89AEC1;
+  --bord:    #3E4452;
+  --bord2:   #C8CCD4;
+}
+html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--bg)!important;color:var(--white)!important;overflow-x:hidden}
+body{font-family:Arial,sans-serif}
+.serif{font-family:Georgia,'Times New Roman',serif}
+
+/* ══ REVEAL ANIMATIONS ══ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+
+/* ══ NAVBAR ══ */
+nav {
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 5%;
+  background:rgba(28,31,38,.95);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--bord);
+}
+.logo {
+  font-family: Georgia, serif;
+  font-size:1.35rem; letter-spacing:.02em;
+}
+.logo .a{color:var(--white);font-weight:700;font-size:1.4rem}
+.logo .l{color:var(--accent);font-style:italic;font-weight:400;font-size:1.4rem}
+nav ul{display:flex;gap:1.4rem;list-style:none}
+nav ul a{color:var(--accent);text-decoration:none;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;font-family:Arial,sans-serif;transition:color .2s}
+nav ul a:hover{color:var(--btn)}
+.nav-cta{
+  border:1px solid var(--accent);color:var(--accent);
+  padding:.45rem 1.1rem;border-radius:3px;font-size:.75rem;
+  letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  font-family:Arial,sans-serif;transition:all .2s;
+}
+.nav-cta:hover{background:var(--accent);color:var(--bg)}
+
+/* ══ HERO ══ */
+#hero {
+  width:100vw; height:auto; min-height:580px;
+  background:#000!important;
+  display:flex; align-items:center;
+  position:relative; overflow:hidden;
+  padding-top:80px;
+  padding-bottom:1rem;
+}
+#hero-left {
+  position:relative; z-index:10;
+  width:30%; padding:0 1rem 0 5%;
+  flex-shrink:0;
+}
+.hero-badge {
+  display:inline-flex;align-items:center;gap:9px;
+  border:1px solid #6B8FAA;border-radius:999px;
+  padding:9px 20px;font-size:11px;color:#89AEC1;
+  letter-spacing:.16em;text-transform:uppercase;
+  margin-bottom:1.5rem;background:rgba(107,143,170,.1);
+  font-family:Arial,sans-serif;font-weight:700;
+}
+.bdot{width:7px;height:7px;background:#9b87d6;border-radius:50%;animation:blink 2s infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+#hero h1 {
+  font-family:'Inter','Arial Black',sans-serif;
+  font-weight:900;
+  font-size:clamp(4rem,7vw,8rem);
+  line-height:.88;
+  color:#F0F2F5;
+  letter-spacing:-.05em;
+  margin-bottom:0.6rem;
+  background:none!important;
+}
+#hero h1 .dim{color:#2a2e38}
+.hero-tagline {
+  font-family:Georgia,serif;
+  font-size:clamp(1.1rem,1.8vw,1.5rem);
+  font-style:italic;
+  color:#6B8FAA;
+  letter-spacing:.02em;
+  margin-bottom:1.2rem;
+}
+.hero-sub {
+  font-size:15px;color:#9BA3B2;line-height:1.7;
+  max-width:420px;margin-bottom:2rem;
+  font-family:Arial,sans-serif;background:none!important;
+}
+.hero-btn {
+  display:inline-flex;align-items:center;gap:12px;
+  background:linear-gradient(135deg,#3a5a78,#2d4a64);color:#fff;border:.5px solid rgba(255,255,255,.1);border-radius:12px;
+  padding:16px 32px 16px 20px;font-size:17px;font-weight:700;
+  cursor:pointer;letter-spacing:.04em;text-transform:none;
+  transition:all .3s;font-family:Arial,sans-serif;
+  box-shadow:0 6px 24px rgba(45,74,100,.4);
+  animation:floatBtn 2.8s ease-in-out infinite;
+  position:relative;
+}
+.hero-btn:hover{background:linear-gradient(135deg,#4a6d8c,#3a5a78);transform:translateY(-4px) scale(1.02);box-shadow:0 10px 36px rgba(45,74,100,.55);animation:none}
+@keyframes floatBtn{0%,100%{transform:translate(0px,0px)}25%{transform:translate(6px,-12px)}50%{transform:translate(0px,-16px)}75%{transform:translate(-6px,-12px)}}
+.hero-btn-ico{
+  width:42px;height:42px;background:rgba(255,255,255,.15);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-size:22px;line-height:1;
+}
+#hero-right {
+  position:relative;
+  width:72%;height:auto;
+  display:flex;flex-direction:column;align-items:stretch;justify-content:center;
+  padding:1rem 3% 1rem 15rem;
+  z-index:5;
+  flex-shrink:0;
+}
+.sec-label.highlight{color:#fff;text-shadow:0 0 20px rgba(107,143,170,.6)}
+.sec-title.highlight{color:#fff;text-shadow:0 0 30px rgba(107,143,170,.4)}
+/* ══ SECTION SHARED ══ */
+section{padding:4rem 5%}
+.sec-label{
+  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:.7rem;font-family:Arial,sans-serif;
+}
+.sec-title{
+  font-family:Georgia,serif;
+  font-size:clamp(1.7rem,3vw,2.4rem);
+  font-weight:700;color:var(--white);margin-bottom:.8rem;line-height:1.15;
+}
+.sec-desc{color:var(--muted);font-size:.95rem;line-height:1.65;max-width:540px;margin-bottom:2.5rem}
+
+/* ══ COUNTRIES GRID (inside hero) ══ */
+.countries-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.5rem;margin-bottom:2rem}
+.cc{
+  background:var(--bg2);border:1px solid var(--bord);border-radius:12px;
+  padding:2rem 1.5rem;cursor:pointer;transition:all .35s cubic-bezier(.34,1.56,.64,1);text-align:center;
+  position:relative;overflow:hidden;
+}
+.cc::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;border-radius:12px;opacity:0;transition:opacity .4s;background:radial-gradient(circle at 50% 0%,rgba(107,143,170,.08),transparent 70%)}
+.cc:hover::after,.cc.active::after{opacity:1}
+.cc:hover,.cc.active{border-color:var(--accent);transform:translateY(-4px) scale(1.04);box-shadow:0 12px 40px rgba(107,143,170,.18)}
+.cc.active{animation:cardPulse 3s ease-in-out infinite}
+.cc:nth-child(1){animation:floatCard 6s ease-in-out .0s infinite}
+.cc:nth-child(2){animation:floatCard 6s ease-in-out .8s infinite}
+.cc:nth-child(3){animation:floatCard 6s ease-in-out 1.6s infinite}
+.cc:nth-child(4){animation:floatCard 6s ease-in-out 2.4s infinite}
+.cc:nth-child(5){animation:floatCard 6s ease-in-out 3.2s infinite}
+@keyframes floatCard{0%,100%{transform:translateX(0px)}50%{transform:translateX(5px)}}}
+@keyframes cardPulse{0%,100%{box-shadow:0 12px 40px rgba(107,143,170,.18)}50%{box-shadow:0 0 30px rgba(107,143,170,.35),0 12px 50px rgba(107,143,170,.25)}}
+.cc .flag{font-size:3rem;margin-bottom:.8rem;display:block}
+.cc .cname{font-family:Georgia,serif;font-weight:700;font-size:1.1rem;color:var(--white);margin-bottom:.6rem}
+.cc .cfocus{font-size:.82rem;color:var(--muted);line-height:1.5;margin-bottom:.9rem}
+.cbar{height:5px;background:var(--bord);border-radius:3px;overflow:hidden}
+.cfill{height:100%;background:linear-gradient(90deg,var(--accent),var(--btn));border-radius:3px}
+.country-panel{
+  background:var(--bg2);border:1px solid var(--bord);border-radius:12px;
+  padding:2rem 2.5rem;display:none;box-shadow:0 4px 30px rgba(0,0,0,.2);
+  position:relative;overflow:hidden;
+}
+.country-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+.country-panel.active{display:block;animation:fadePanel 1s cubic-bezier(.25,.46,.45,.94)}
+@keyframes fadePanel{
+  0%{opacity:0;transform:translateY(16px) scale(.97);filter:blur(4px)}
+  100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+}
+.panel-head{display:flex;align-items:center;gap:.9rem;margin-bottom:1rem}
+.panel-flag{font-size:2.2rem}
+.panel-title{font-family:Georgia,serif;font-size:1.5rem;font-weight:700;color:var(--white)}
+.panel-desc{color:var(--muted);font-size:.92rem;line-height:1.75;margin-bottom:1.2rem}
+.panel-links{display:flex;gap:1rem;flex-wrap:wrap}
+.panel-link{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:rgba(107,143,170,.08);border:1px solid rgba(107,143,170,.3);
+  color:var(--accent);padding:.7rem 1.4rem;border-radius:6px;
+  text-decoration:none;font-size:.85rem;font-weight:600;
+  letter-spacing:.03em;transition:all .2s;font-family:Arial,sans-serif;
+}
+.panel-link:hover{background:rgba(107,143,170,.18);border-color:var(--accent);transform:translateY(-2px)}
+.country-panel{
+  background:var(--bg2);border:1px solid var(--bord);border-radius:12px;
+  padding:2.2rem 2.5rem;display:none;box-shadow:0 4px 30px rgba(0,0,0,.2);
+  position:relative;overflow:hidden;
+}
+.country-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+.country-panel.active{display:block;animation:fadePanel 1s cubic-bezier(.25,.46,.45,.94)}
+@keyframes fadePanel{0%{opacity:0;transform:translateY(14px) scale(.97);filter:blur(3px)}100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+.panel-head{display:flex;align-items:center;gap:.9rem;margin-bottom:1rem}
+.panel-flag{font-size:2.2rem}
+.panel-title{font-family:Georgia,serif;font-size:1.5rem;font-weight:700;color:var(--white)}
+.panel-desc{color:var(--muted);font-size:.92rem;line-height:1.75;margin-bottom:1.2rem}
+.tags{display:flex;gap:.55rem;flex-wrap:wrap}
+.tag{
+  font-size:.7rem;letter-spacing:.06em;padding:.3rem .75rem;
+  border:1px solid rgba(107,143,170,.35);color:var(--accent);
+  border-radius:20px;text-transform:uppercase;font-family:Arial,sans-serif;
+  background:rgba(107,143,170,.04);transition:all .2s;
+}
+.tag:hover{background:rgba(107,143,170,.12);border-color:var(--accent)}
+
+/* ══ STATS ══ */
+#stats{background:var(--bg2);border-top:1px solid var(--bord);border-bottom:1px solid var(--bord)}
+/* ══ CALENDARIO ══ */
+#calendario{background:var(--bg2)}
+.cal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.cal-card{
+  background:var(--bg);border:1px solid var(--bord);border-radius:10px;
+  padding:1.4rem 1.5rem;transition:all .25s;
+}
+.cal-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,.3)}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem}
+.cal-date{font-size:.72rem;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+.cal-country{font-size:1rem}
+.cal-type{font-size:.85rem;color:var(--muted);line-height:1.5;font-family:Arial,sans-serif}
+.cal-src{display:inline-block;margin-top:.7rem;font-size:.72rem;color:var(--accent);text-decoration:none;font-family:Arial,sans-serif;transition:color .2s}
+.cal-src:hover{color:#fff}
+
+/* ══ SERVICIOS ══ */
+#servicios{background:var(--bg)}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
+.srv-card{
+  background:var(--bg2);border:1px solid var(--bord);border-radius:7px;
+  padding:2.2rem 1.8rem;transition:all .22s;
+}
+.srv-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,.3)}
+.srv-icon{
+  width:44px;height:44px;margin-bottom:1.3rem;
+  background:rgba(107,143,170,.1);border:1px solid rgba(107,143,170,.2);
+  border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;
+}
+.srv-title{font-family:Georgia,serif;font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:.65rem}
+.srv-desc{color:var(--muted);font-size:.85rem;line-height:1.65}
+
+/* ══ EQUIPO ══ */
+#equipo{background:var(--bg2)}
+.eq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.3rem}
+.eq-card{
+  background:var(--bg);border:1px solid var(--bord);border-radius:7px;
+  padding:2rem 1.5rem;text-align:center;transition:all .22s;
+}
+.eq-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,.3)}
+.eq-avatar{
+  width:72px;height:72px;margin:0 auto 1.2rem;
+  background:rgba(107,143,170,.1);border:2px solid rgba(107,143,170,.2);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:2rem;
+}
+.eq-name{font-family:Georgia,serif;font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:.25rem}
+.eq-role{font-size:.75rem;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.7rem;font-family:Arial,sans-serif}
+.eq-bio{color:var(--muted);font-size:.82rem;line-height:1.6}
+.eq-social{display:flex;justify-content:center;gap:.9rem;margin-top:1rem}
+.eq-social a{color:var(--muted);text-decoration:none;font-size:.72rem;transition:color .2s}
+.eq-social a:hover{color:var(--accent)}
+
+/* ══ ANÁLISIS ══ */
+#analisis{background:var(--bg)}
+.map-ph{
+  background:var(--bg2);border:1px solid var(--bord);border-radius:7px;
+  height:260px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:.6rem;margin-bottom:2.5rem;
+}
+.map-ph span{color:var(--muted);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
+.art-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.3rem}
+.art-card{
+  background:var(--bg2);border:1px solid var(--bord);border-radius:7px;
+  padding:1.4rem;cursor:pointer;transition:all .22s;
+}
+.art-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.art-meta{display:flex;align-items:center;gap:.65rem;margin-bottom:.65rem}
+.art-ctag{
+  font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);border:1px solid rgba(107,143,170,.3);
+  padding:.18rem .55rem;border-radius:2px;
+}
+.art-date{font-size:.72rem;color:var(--muted)}
+.art-title{font-family:Georgia,serif;font-size:.95rem;font-weight:700;color:var(--white);line-height:1.4;margin-bottom:.45rem}
+.art-exc{font-size:.8rem;color:var(--muted);line-height:1.6}
+
+/* ══ VIDEOS ══ */
+#videos{background:var(--bg2);padding-top:1rem}
+#videos .sec-desc{margin-bottom:1.2rem}
+.vid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
+.vid-card{
+  background:var(--bg);border:1px solid var(--bord);border-radius:7px;
+  overflow:hidden;cursor:pointer;transition:all .22s;
+}
+.vid-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,.3)}
+.vid-thumb{
+  height:160px;background:var(--bg2);display:flex;
+  align-items:center;justify-content:center;position:relative;
+  font-size:2.5rem;border-bottom:1px solid var(--bord);
+}
+.vid-play{
+  position:absolute;width:48px;height:48px;border-radius:50%;
+  background:rgba(107,143,170,.9);display:flex;align-items:center;
+  justify-content:center;transition:transform .2s;
+}
+.vid-card:hover .vid-play{transform:scale(1.1)}
+.vid-body{padding:1.2rem 1.2rem 1.4rem}
+.vid-title{font-family:Georgia,serif;font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:.4rem;line-height:1.35}
+.vid-meta{font-size:.72rem;color:var(--muted);font-family:Arial,sans-serif}
+
+/* ══ CTA ══ */
+#cta{background:var(--bg2);border-top:1px solid var(--bord);text-align:center}
+.cta-title{
+  font-family:Georgia,serif;
+  font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;
+  color:var(--white);margin-bottom:.9rem;line-height:1.1;
+}
+.cta-title em{font-style:italic;color:var(--accent)}
+.cta-desc{color:var(--muted);line-height:1.7;margin-bottom:2.2rem;font-size:.95rem;max-width:580px;margin-left:auto;margin-right:auto}
+.cf-group{display:flex;gap:.7rem;max-width:500px;margin:0 auto 1rem}
+.cf-input{
+  flex:1;padding:13px 16px;background:#1C1F26;border:1px solid #3E4452;
+  border-radius:4px;color:#F0F2F5;font-family:Arial,sans-serif;
+  font-size:14px;outline:none;transition:border-color .2s;
+}
+.cf-input:focus{border-color:#6B8FAA}
+.cf-input.error{border-color:#E24B4A}
+.cf-textarea{
+  width:100%;max-width:500px;padding:13px 16px;background:#1C1F26;
+  border:1px solid #3E4452;border-radius:4px;color:#F0F2F5;
+  font-family:Arial,sans-serif;font-size:14px;outline:none;
+  resize:vertical;display:block;margin:0 auto 1rem;transition:border-color .2s;
+}
+.cf-textarea:focus{border-color:#6B8FAA}
+.cf-btn{
+  background:#89AEC1;color:#1C1F26;border:none;border-radius:4px;
+  padding:13px 32px;font-size:13px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;cursor:pointer;font-family:Arial,sans-serif;
+  transition:all .2s;
+}
+.cf-btn:hover{background:#6B8FAA;transform:translateY(-1px)}
+
+/* ══ FOOTER ══ */
+footer{background:var(--bg);border-top:1px solid var(--bord);padding:3rem 5%}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
+.footer-logo{font-family:Georgia,serif;font-size:1.1rem;margin-bottom:.9rem}
+.footer-logo .a{color:var(--white);font-weight:700}
+.footer-logo .l{color:var(--accent);font-style:italic}
+.footer-brand p{color:var(--muted);font-size:.82rem;line-height:1.6;max-width:200px}
+.footer-col h4{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white);margin-bottom:1rem;font-family:Arial,sans-serif;font-weight:700}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.footer-col ul a{color:var(--accent);text-decoration:none;font-size:.82rem;transition:color .2s;font-family:Arial,sans-serif}
+.footer-col ul a:hover{color:var(--btn)}
+.footer-bottom{border-top:1px solid var(--bord);padding-top:1.8rem;display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{color:var(--muted);font-size:.75rem;font-family:Arial,sans-serif}
+.social-links{display:flex;gap:1.3rem}
+.social-links a{color:var(--accent);font-size:.75rem;text-decoration:none;font-family:Arial,sans-serif}
+
+/* ══ HAMBURGER ══ */
+.hamburger{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:32px;height:32px;background:none;border:none;cursor:pointer;
+  padding:4px;z-index:210;position:relative;
+}
+.hamburger span{
+  display:block;width:100%;height:2px;background:var(--accent);
+  border-radius:2px;transition:all .3s ease;
+}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+.mobile-menu{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(28,31,38,.98);backdrop-filter:blur(20px);
+  z-index:200;flex-direction:column;align-items:center;justify-content:center;
+  gap:2rem;opacity:0;transition:opacity .3s ease;
+  pointer-events:none;
+}
+.mobile-menu.open{display:flex;opacity:1;pointer-events:auto}
+.mobile-menu a{
+  color:var(--white);text-decoration:none;font-size:1.3rem;
+  letter-spacing:.08em;text-transform:uppercase;font-family:Arial,sans-serif;
+  transition:color .2s;
+}
+.mobile-menu a:hover,.mobile-menu a:active{color:var(--accent)}
+.mobile-menu .nav-cta-mobile{
+  border:1px solid var(--accent);color:var(--accent);
+  padding:.7rem 2rem;border-radius:3px;font-size:.85rem;
+  letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  font-family:Arial,sans-serif;margin-top:.5rem;
+}
+
+@media(max-width:900px){
+  .hamburger{display:flex}
+  nav ul{display:none}
+  .nav-cta{display:none}
+  .cf-group{flex-direction:column!important}
+  .cf-input{width:100%!important}
+  #hero{flex-direction:column;height:auto;min-height:auto;padding-top:80px;padding-bottom:2rem}
+  #hero-left{width:100%;padding:2rem 5% 0}
+  #hero-right{width:100%;height:auto;min-height:auto;padding:1rem 5%}
+  .countries-grid{min-height:220px;padding:1rem 0}
+  .cc{width:110px;padding:1rem .7rem}
+  .cc .flag{font-size:1.8rem!important}
+  .cal-grid{grid-template-columns:1fr 1fr}
+  .srv-grid,.vid-grid{grid-template-columns:1fr}
+  .art-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  section{padding:3rem 4%}
+  #hero h1{font-size:clamp(2.8rem,12vw,4rem)!important}
+  .hero-sub{font-size:14px}
+  .countries-grid{grid-template-columns:repeat(2,1fr);gap:.8rem}
+  .cc{padding:1.2rem .8rem}
+  .cc .flag{font-size:2rem!important}
+  .country-panel{padding:1.6rem}
+  .srv-card,.eq-card{padding:1.6rem 1.4rem}
+  .cal-grid{gap:1rem}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:1.5rem}
+  .vid-thumb{height:130px}
+}
+@media(max-width:480px){
+  .countries-grid{grid-template-columns:1fr 1fr;gap:.6rem}
+  .cc .cname{font-size:.8rem}
+  .cc .cfocus{font-size:.65rem}
+  .cal-grid{grid-template-columns:1fr}
+  .srv-grid{gap:1rem}
+  .eq-grid{grid-template-columns:1fr}
+  .art-card{padding:1rem}
+  .vid-grid{gap:1rem}
+  #hero-right{height:45vw;min-height:200px}
+  .footer-grid{grid-template-columns:1fr;gap:1.5rem}
+  .footer-bottom{flex-direction:column;gap:.8rem;text-align:center}
+}
+@media(max-width:380px){
+  #hero h1{font-size:clamp(2rem,10vw,2.8rem)!important}
+  .hero-tagline{font-size:1rem}
+  .countries-grid{grid-template-columns:1fr;gap:.5rem}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .cc .flag{font-size:1.4rem}
+  section{padding:2.5rem 3%}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo"><span class="a">ANALÍTICA</span><span class="l">LATAM</span></div>
+  <ul>
+    <li><a href="#hero">Inicio</a></li>
+    <li><a href="#paises">Países</a></li>
+    <li><a href="#videos">Videos</a></li>
+    <li><a href="#equipo">Equipo</a></li>
+    <li><a href="#analisis">Análisis</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#cta">Contacto</a></li>
+  </ul>
+  <a href="mailto:contacto@analiticalatam.com" class="nav-cta">Escribir</a>
+  <button class="hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#hero" class="mobile-link">Inicio</a>
+  <a href="#paises" class="mobile-link">Países</a>
+  <a href="#equipo" class="mobile-link">Equipo</a>
+  <a href="#analisis" class="mobile-link">Análisis</a>
+  <a href="#videos" class="mobile-link">Videos</a>
+  <a href="#servicios" class="mobile-link">Servicios</a>
+  <a href="#cta" class="mobile-link">Contacto</a>
+  <a href="mailto:contacto@analiticalatam.com" class="nav-cta-mobile">Escribir</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div id="hero-left">
+    <h1>Analítica<br>Latam</h1>
+    <p class="hero-tagline" style="font-size:clamp(1.4rem,2.5vw,2rem);color:var(--white);font-style:normal;font-weight:700;margin-bottom:.2rem">América Latina</p>
+    <p class="hero-tagline">En perspectiva comparada</p>
+    <p class="hero-sub">Bienvenidos a AnalíticaLatam, el espacio donde analizamos los procesos políticos de América Latina desde una perspectiva comparada.</p>
+    <button class="hero-btn" id="heroBtn">
+      <span class="hero-btn-ico" style="font-size:18px;line-height:1">🇵🇪</span>
+      <span style="display:flex;flex-direction:column;align-items:flex-start;line-height:1.3">
+        <span style="font-size:14px;opacity:.95;font-weight:800;letter-spacing:.08em;text-transform:uppercase">Resultados 2026</span>
+        <span style="font-size:18px">Mapa electoral Perú →</span>
+      </span>
+    </button>
+  </div>
+  <div id="hero-right">
+    <p class="sec-label" id="cr-label" style="margin-bottom:.5rem">Cobertura Regional</p>
+    <h2 class="sec-title" id="cr-title" style="font-size:clamp(1.2rem,2vw,1.6rem);margin-bottom:1rem">Cinco países. Un enfoque comparado.</h2>
+    <div class="countries-grid" style="margin-bottom:.8rem">
+      <div class="cc active" data-country="0" id="card-0">
+        <div class="flag">🇵🇪</div><div class="cname">Perú</div>
+        <div class="cfocus">Fragmentación partidaria y elecciones desde 2016</div>
+        <div class="cbar"><div class="cfill" style="width:90%"></div></div>
+      </div>
+      <div class="cc" data-country="1" id="card-1">
+        <div class="flag">🇪🇨</div><div class="cname">Ecuador</div>
+        <div class="cfocus">Volatilidad electoral y crisis de representación</div>
+        <div class="cbar"><div class="cfill" style="width:80%"></div></div>
+      </div>
+      <div class="cc" data-country="2" id="card-2">
+        <div class="flag">🇨🇱</div><div class="cname">Chile</div>
+        <div class="cfocus">Proceso constituyente y post-estallido social</div>
+        <div class="cbar"><div class="cfill" style="width:95%"></div></div>
+      </div>
+      <div class="cc" data-country="3" id="card-3">
+        <div class="flag">🇲🇽</div><div class="cname">México</div>
+        <div class="cfocus">Hegemonía Morena y geografía del voto</div>
+        <div class="cbar"><div class="cfill" style="width:75%"></div></div>
+      </div>
+      <div class="cc" data-country="4" id="card-4">
+        <div class="flag">🇨🇴</div><div class="cname">Colombia</div>
+        <div class="cfocus">Polarización, coaliciones y Acuerdo de Paz</div>
+        <div class="cbar"><div class="cfill" style="width:85%"></div></div>
+      </div>
+    </div>
+    <div class="country-panel active" id="panel-0" style="padding:1.2rem 1.5rem">
+      <div class="panel-head" style="margin-bottom:.6rem"><span class="panel-flag">🇵🇪</span><h3 class="panel-title" style="font-size:1.1rem">Perú</h3></div>
+      <p class="panel-desc" style="font-size:.82rem;margin-bottom:.8rem">Perú exhibe uno de los sistemas de partidos más fragmentados de América Latina. Cubrimos las elecciones generales y regionales desde 2016.</p>
+      <div class="tags" style="margin-bottom:.8rem"><span class="tag">Elecciones generales</span><span class="tag">Congreso</span><span class="tag">Voto rural</span></div>
+      <div class="panel-links"><a class="panel-link" style="font-size:.78rem;padding:.5rem 1rem" href="https://www.congreso.gob.pe/" target="_blank" rel="noopener">🏛️ Congreso</a><a class="panel-link" style="font-size:.78rem;padding:.5rem 1rem" href="https://www.gob.pe/institucion/presidencia/informes-publicaciones/196158-constitucion-politica-del-peru" target="_blank" rel="noopener">📜 Constitución</a></div>
+    </div>
+    <div class="country-panel" id="panel-1" style="padding:1.2rem 1.5rem">
+      <div class="panel-head" style="margin-bottom:.6rem"><span class="panel-flag">🇪🇨</span><h3 class="panel-title" style="font-size:1.1rem">Ecuador</h3></div>
+      <p class="panel-desc" style="font-size:.82rem;margin-bottom:.8rem">Ecuador atraviesa un ciclo de alta volatilidad electoral y crisis de representación política.</p>
+      <div class="tags" style="margin-bottom:.8rem"><span class="tag">Outsiders</span><span class="tag">Crisis de representación</span><span class="tag">Presidenciales</span></div>
+      <div class="panel-links"><a class="panel-link" style="font-size:.78rem;padding:.5rem 1rem" href="https://www.asambleanacional.gob.ec/" target="_blank" rel="noopener">🏛️ Asamblea Nacional</a><a class="panel-link" style="font-size:.78rem;padding:.5rem 1rem" href="https://www.defensa.gob.ec/wp-content/uploads/downloads/2021/02/Constitucion-de-la-Republica-del-Ecuador_act_ene-2021.pdf" target="_blank" rel="noopener">📜 Constitución</a></div>
+    </div>
+    <div class="country-panel" id="panel-2" style="padding:1.2rem 1.5rem">
+      <div class="panel-head" style="margin-bottom:.6rem"><span class="panel-flag">🇨🇱</span><h3 class="panel-title" style="font-size:1.1rem">Chile</h3></div>
+      <p class="panel-desc" style="font-size:.82rem;margin-bottom:.8rem">El proceso constituyente chileno reconfiguró el sistema de partidos y abrió una nueva etapa post-estallido social.</p>
+      <div class="tags" style="margin-bottom:.8rem"><span class="tag">Constituyente</span><span class="tag">Coaliciones</span><span class="tag">Plebiscito</span></div>
+      <div class="panel-links"><a class="panel-link" style="font-size:.78rem;padding:.5rem 1rem" href="https://www.congreso.cl/" target="_blank" rel="noopener">🏛️ Congreso Nacional</a><a class="panel-link" style="font-size:.78rem;padding:.5rem 1rem" href="https://www.bcn.cl/leychile/navegar?idNorma=242302" target="_blank" rel="noopener">📜 Constitución</a></div>
+    </div>
+    <div class="country-panel" id="panel-3" style="padding:1.2rem 1.5rem">
+      <div class="panel-head" style="margin-bottom:.6rem"><span class="panel-flag">🇲🇽</span><h3 class="panel-title" style="font-size:1.1rem">México</h3></div>
+      <p class="panel-desc" style="font-size:.82rem;margin-bottom:.8rem">México vive un ciclo de hegemonía Morena con implicaciones en la geografía del voto rural y urbano.</p>
+      <div class="tags" style="margin-bottom:.8rem"><span class="tag">Morena</span><span class="tag">Intermedias</span><span class="tag">Geografía electoral</span></div>
+      <div class="panel-links"><a class="panel-link" style="font-size:.78rem;padding:.5rem 1rem" href="https://www.diputados.gob.mx/" target="_blank" rel="noopener">🏛️ Cámara de Diputados</a><a class="panel-link" style="font-size:.78rem;padding:.5rem 1rem" href="https://www.diputados.gob.mx/LeyesBiblio/ref/cpeum.htm" target="_blank" rel="noopener">📜 Constitución</a></div>
+    </div>
+    <div class="country-panel" id="panel-4" style="padding:1.2rem 1.5rem">
+      <div class="panel-head" style="margin-bottom:.6rem"><span class="panel-flag">🇨🇴</span><h3 class="panel-title" style="font-size:1.1rem">Colombia</h3></div>
+      <p class="panel-desc" style="font-size:.82rem;margin-bottom:.8rem">Colombia enfrenta polarización creciente entre el Pacto Histórico y las fuerzas de centroderecha.</p>
+      <div class="tags" style="margin-bottom:.8rem"><span class="tag">Polarización</span><span class="tag">Pacto Histórico</span><span class="tag">Nuevas coaliciones</span></div>
+      <div class="panel-links"><a class="panel-link" style="font-size:.78rem;padding:.5rem 1rem" href="https://www.camara.gov.co/" target="_blank" rel="noopener">🏛️ Cámara de Representantes</a><a class="panel-link" style="font-size:.78rem;padding:.5rem 1rem" href="https://www.constitucioncolombia.com/" target="_blank" rel="noopener">📜 Constitución</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section id="videos">
+  <p class="sec-label reveal" id="vid-label">Contenido audiovisual</p>
+  <h2 class="sec-title reveal reveal-delay-1" id="vid-title">Análisis en video</h2>
+  <p class="sec-desc reveal reveal-delay-2">Explora nuestros análisis políticos en formato audiovisual con entrevistas, debates y presentaciones.</p>
+  <div class="vid-grid">
+    <a href="https://youtu.be/VteYAfhN3p4" target="_blank" rel="noopener" class="vid-card reveal reveal-delay-1" style="text-decoration:none;color:inherit">
+      <div class="vid-thumb" style="background-image:url(https://img.youtube.com/vi/VteYAfhN3p4/mqdefault.jpg);background-size:cover;background-position:center"><div class="vid-play">▶</div></div>
+      <div class="vid-body">
+        <h4 class="vid-title">Nicolás Maduro: regímenes dictatoriales en América Latina</h4>
+        <p class="vid-meta">Conexión Regional · Perspectiva histórica comparada con Chile, México, Colombia y Perú</p>
+      </div>
+    </a>
+    <a href="https://youtu.be/Ov07KZ7xVlY" target="_blank" rel="noopener" class="vid-card reveal reveal-delay-2" style="text-decoration:none;color:inherit">
+      <div class="vid-thumb" style="background-image:url(https://img.youtube.com/vi/Ov07KZ7xVlY/mqdefault.jpg);background-size:cover;background-position:center"><div class="vid-play">▶</div></div>
+      <div class="vid-body">
+        <h4 class="vid-title">Análisis de la segunda vuelta en Chile</h4>
+        <p class="vid-meta">Conexión Regional · Proceso electoral y perspectivas políticas</p>
+      </div>
+    </a>
+    <a href="https://youtu.be/-NRJhWGV2wI" target="_blank" rel="noopener" class="vid-card reveal reveal-delay-3" style="text-decoration:none;color:inherit">
+      <div class="vid-thumb" style="background-image:url(https://img.youtube.com/vi/-NRJhWGV2wI/mqdefault.jpg);background-size:cover;background-position:center"><div class="vid-play">▶</div></div>
+      <div class="vid-body">
+        <h4 class="vid-title">Crisis y caídas presidenciales</h4>
+        <p class="vid-meta">Conexión Regional · Análisis comparado en la región</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section id="equipo">
+  <p class="sec-label reveal">Nuestro equipo</p>
+  <h2 class="sec-title reveal reveal-delay-1">Analistas e investigadores</h2>
+  <p class="sec-desc reveal reveal-delay-2">Conoce a las personas detrás de los análisis políticos de AnalíticaLatam.</p>
+  <div class="eq-grid">
+    <div class="eq-card reveal reveal-delay-1">
+      <div class="eq-avatar"><img src="catherine.jpeg" alt="Catherine Paredes" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;border-radius:50%"></div>
+      <h3 class="eq-name">Catherine Paredes</h3>
+      <p class="eq-role">Analista Política — Perú</p>
+      <p class="eq-bio">Analista política con estudios de maestría en FLACSO Ecuador e investigaciones en procesos constitucionales y sucesiones presidenciales.</p>
+      <div class="eq-social"><a href="https://twitter.com/catherinparedes">Twitter</a><a href="https://www.linkedin.com/in/catherine-milagros-paredes-quispe-5279b350/">LinkedIn</a></div>
+    </div>
+    <div class="eq-card reveal reveal-delay-2">
+      <div class="eq-avatar"><img src="geovana.jpeg" alt="Geovanna Valle" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>
+      <h3 class="eq-name">Geovanna Valle</h3>
+      <p class="eq-role">Analista — Ecuador</p>
+      <p class="eq-bio">Investigadora especializada en volatilidad electoral, crisis de representación y fenómeno outsider en Ecuador. Magíster en Ciencia Política.</p>
+      <div class="eq-social"><a href="#">Twitter</a><a href="#">LinkedIn</a></div>
+    </div>
+    <div class="eq-card reveal reveal-delay-3">
+      <div class="eq-avatar"><img src="web/Cristrian.jpeg" alt="Cristián Valarezo" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>
+      <h3 class="eq-name">Cristián Valarezo</h3>
+      <p class="eq-role">Analista — Chile</p>
+      <p class="eq-bio">Politólogo con enfoque en proceso constituyente, coaliciones y recomposición del sistema de partidos chileno. Candidato a Doctor en Estudios Latinoamericanos.</p>
+      <div class="eq-social"><a href="https://www.linkedin.com/in/cristianvalarezo/">LinkedIn</a></div>
+    </div>
+    <div class="eq-card reveal reveal-delay-4">
+      <div class="eq-avatar"><img src="mariana.jpeg" alt="Mariana Arzate" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;border-radius:50%"></div>
+      <h3 class="eq-name">Mariana Arzate</h3>
+      <p class="eq-role">Analista — México</p>
+      <p class="eq-bio">Politóloga especializada en Gobernanza Electoral y procesos políticos en América Latina.</p>
+      <div class="eq-social"><a href="#">Twitter</a><a href="https://www.linkedin.com/in/mariana-arzate-132239220?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">LinkedIn</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ANÁLISIS -->
+<section id="analisis">
+  <p class="sec-label reveal">Últimas publicaciones</p>
+  <h2 class="sec-title reveal reveal-delay-1">Análisis recientes</h2>
+  <p class="sec-desc reveal reveal-delay-2">Exploraciones empíricas sobre los procesos políticos más relevantes de la región.</p>
+  <a href="mapa_peru_v10_actualizado.html" style="text-decoration:none;display:block">
+    <div style="border-radius:8px;border:1px solid var(--bord);overflow:hidden;transition:all .25s ease" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.4)'" onmouseout="this.style.borderColor='';this.style.transform='';this.style.boxShadow=''">
+      <div style="display:flex;align-items:stretch;background:var(--bg2)">
+        <img src="web/mapa%202.png" alt="Mapa Perú 2026" style="width:140px;flex-shrink:0;object-fit:cover;display:block;border-right:1px solid var(--bord)">
+        <div style="flex:1;padding:.7rem 1rem">
+          <div style="font-size:.45rem;color:#888;letter-spacing:.12em;text-transform:uppercase;font-weight:700">Elecciones Presidenciales</div>
+          <div style="font-size:.85rem;font-weight:800;color:var(--fg);margin-top:1px;letter-spacing:-.02em">Perú 2026 · 1.ª Vuelta</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.25rem .5rem;margin-top:.5rem">
+            <div style="display:flex;align-items:center;gap:.35rem;font-size:1.05rem;color:var(--fg)"><span style="width:10px;height:10px;border-radius:2px;background:#d32f2f;flex-shrink:0"></span><span style="font-weight:700;color:#ddd">Sánchez P.</span><span style="margin-left:auto;color:#aaa;font-weight:700">11</span></div>
+            <div style="display:flex;align-items:center;gap:.35rem;font-size:1.05rem;color:var(--fg)"><span style="width:10px;height:10px;border-radius:2px;background:#e67e22;flex-shrink:0"></span><span style="font-weight:700;color:#ddd">Fujimori</span><span style="margin-left:auto;color:#aaa;font-weight:700">11</span></div>
+            <div style="display:flex;align-items:center;gap:.35rem;font-size:1.05rem;color:var(--fg)"><span style="width:10px;height:10px;border-radius:2px;background:#00b4d8;flex-shrink:0"></span><span style="font-weight:700;color:#ddd">López A.</span><span style="margin-left:auto;color:#aaa;font-weight:700">Lima</span></div>
+            <div style="display:flex;align-items:center;gap:.35rem;font-size:1.05rem;color:var(--fg)"><span style="width:10px;height:10px;border-radius:2px;background:#f9c80e;flex-shrink:0"></span><span style="font-weight:700;color:#ddd">Nieto</span><span style="margin-left:auto;color:#aaa;font-weight:700">Arequipa</span></div>
+            <div style="display:flex;align-items:center;gap:.35rem;font-size:1.05rem;color:var(--fg)"><span style="width:10px;height:10px;border-radius:2px;background:#2e7d32;flex-shrink:0"></span><span style="font-weight:700;color:#ddd">Belmont</span><span style="margin-left:auto;color:#aaa;font-weight:700">Tacna</span></div>
+            <div style="display:flex;align-items:center;gap:.35rem;font-size:1.05rem;color:var(--fg)"><span style="width:10px;height:10px;border-radius:2px;border:1.5px solid #555;background:transparent;flex-shrink:0"></span><span style="font-weight:700;color:#ddd">Callao</span></div>
+          </div>
+          <div style="margin-top:.5rem;padding-top:.4rem;border-top:1px solid var(--bord);display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.5rem;color:#666;letter-spacing:.04em">25 regiones</span>
+            <span style="font-size:1rem;font-weight:700;color:var(--accent)">Ver mapa →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+  <div class="art-grid">
+    <div class="art-card reveal reveal-delay-1"><div class="art-meta"><span class="art-ctag">🇵🇪 Perú</span><span class="art-date">Mayo 2026</span></div><h4 class="art-title">Fragmentación en el Congreso peruano: nuevos partidos y lógica de coalición 2026</h4><p class="art-exc">Análisis de la composición del nuevo Congreso y sus implicaciones para la gobernabilidad.</p></div>
+    <div class="art-card reveal reveal-delay-2"><div class="art-meta"><span class="art-ctag">🇨🇱 Chile</span><span class="art-date">Abril 2026</span></div><h4 class="art-title">La recomposición del centro político chileno post-constituyente</h4><p class="art-exc">Cómo el fracaso del segundo proceso constituyente redefinió el espacio de centroizquierda.</p></div>
+    <div class="art-card reveal reveal-delay-1"><div class="art-meta"><span class="art-ctag">🇲🇽 México</span><span class="art-date">Marzo 2026</span></div><h4 class="art-title">Geografía del voto Morena: rural vs. urbano en el ciclo 2024–2027</h4><p class="art-exc">Mapeo desagregado de la fortaleza electoral de Morena con proyecciones hacia 2027.</p></div>
+    <div class="art-card reveal reveal-delay-2"><div class="art-meta"><span class="art-ctag">🇪🇨 Ecuador</span><span class="art-date">Febrero 2026</span></div><h4 class="art-title">Outsiders y crisis de representación en Ecuador: ¿ciclo cerrado?</h4><p class="art-exc">Evaluación del fenómeno outsider desde Correa hasta Noboa y sus condicionantes estructurales.</p></div>
+    <div class="art-card reveal reveal-delay-3"><div class="art-meta"><span class="art-ctag">🇨🇴 Colombia</span><span class="art-date">Enero 2026</span></div><h4 class="art-title">Pacto Histórico y oposición: anatomía de la polarización colombiana</h4><p class="art-exc">Análisis comparado de bloques electorales con datos de regionales 2023 y presidenciales 2022.</p></div>
+    <div class="art-card reveal reveal-delay-4"><div class="art-meta"><span class="art-ctag">Regional</span><span class="art-date">Dic 2025</span></div><h4 class="art-title">Cinco sistemas de partidos: convergencias y divergencias en la región andina</h4><p class="art-exc">Análisis comparado de institucionalización partidaria en los cinco países de cobertura.</p></div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <p class="sec-label reveal">Lo que hacemos</p>
+  <h2 class="sec-title reveal reveal-delay-1">Servicios de consultoría</h2>
+  <p class="sec-desc reveal reveal-delay-2">Análisis especializados para actores políticos, medios, organismos internacionales e investigadores.</p>
+  <div class="srv-grid">
+    <div class="srv-card reveal reveal-delay-1">
+      <div class="srv-icon">🗳️</div>
+      <h3 class="srv-title">Análisis Electoral</h3>
+      <p class="srv-desc">Proyecciones, modelado de resultados y lectura de tendencias electorales con datos desagregados por distrito, provincia y región. Informes pre y post-electorales.</p>
+    </div>
+    <div class="srv-card reveal reveal-delay-2">
+      <div class="srv-icon">🗺️</div>
+      <h3 class="srv-title">Mapeo Territorial</h3>
+      <p class="srv-desc">Visualizaciones choropleth de resultados electorales, fortaleza partidaria y comportamiento del voto urbano y rural. Cartografía política de alta resolución.</p>
+    </div>
+    <div class="srv-card reveal reveal-delay-3">
+      <div class="srv-icon">📊</div>
+      <h3 class="srv-title">Investigación Aplicada</h3>
+      <p class="srv-desc">Estudios de caso, papers comparados y análisis de opinión pública. Metodología cuantitativa y cualitativa adaptada a cada contexto nacional.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CALENDARIO ELECTORAL -->
+<section id="calendario">
+  <p class="sec-label reveal">Próximos comicios</p>
+  <h2 class="sec-title reveal reveal-delay-1">Calendario electoral 2025–2026</h2>
+  <p class="sec-desc reveal reveal-delay-2">Las elecciones que marcarán el rumbo de América Latina. Seguimiento y análisis en tiempo real.</p>
+  <div class="cal-grid">
+    <div class="cal-card reveal reveal-delay-1">
+      <div class="cal-head"><span class="cal-date">Abril 2026</span><span class="cal-country">🇵🇪 Perú</span></div>
+      <p class="cal-type">Elecciones generales — primera vuelta</p>
+      <a class="cal-src" href="https://resultadoelectoral.onpe.gob.pe/main/presidenciales" target="_blank" rel="noopener">Resultados oficiales →</a>
+    </div>
+    <div class="cal-card reveal reveal-delay-2">
+      <div class="cal-head"><span class="cal-date">Junio 2026</span><span class="cal-country">🇵🇪 Perú</span></div>
+      <p class="cal-type">Elecciones generales — segunda vuelta (posible)</p>
+    </div>
+    <div class="cal-card reveal reveal-delay-3">
+      <div class="cal-head"><span class="cal-date">2025</span><span class="cal-country">🇨🇱 Chile</span></div>
+      <p class="cal-type">Elecciones presidenciales y parlamentarias</p>
+      <a class="cal-src" href="https://segundavotacion.servel.cl/" target="_blank" rel="noopener">Resultados oficiales →</a>
+    </div>
+    <div class="cal-card reveal reveal-delay-1">
+      <div class="cal-head"><span class="cal-date">Nov 2027</span><span class="cal-country">🇪🇨 Ecuador</span></div>
+      <p class="cal-type">Elecciones Seccionales y del Consejo de Participación Ciudadana y Control Social (CPCCS)</p>
+      <a class="cal-src" href="https://www.cne.gob.ec/cne-aprobo-disenos-de-papeletas-documentos-y-paquete-electoral-elecciones-2027/" target="_blank" rel="noopener">CNE Ecuador →</a>
+    </div>
+    <div class="cal-card reveal reveal-delay-2">
+      <div class="cal-head"><span class="cal-date">2027</span><span class="cal-country">🇲🇽 México</span></div>
+      <p class="cal-type">Elecciones intermedias — renovación de la Cámara de Diputados</p>
+      <a class="cal-src" href="https://centralelectoral.ine.mx/category/elecciones-2027/" target="_blank" rel="noopener">Información oficial →</a>
+    </div>
+    <div class="cal-card reveal reveal-delay-3">
+      <div class="cal-head"><span class="cal-date">2026</span><span class="cal-country">🇨🇴 Colombia</span></div>
+      <p class="cal-type">Elecciones presidenciales y legislativas</p>
+      <a class="cal-src" href="https://www.registraduria.gov.co/-Elecciones-2026-.html" target="_blank" rel="noopener">Registraduría Nacional →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div style="max-width:640px;margin:0 auto;text-align:center">
+    <p class="sec-label">Trabajemos juntos</p>
+    <h2 class="cta-title">¿Necesita análisis político <em>riguroso</em>?</h2>
+    <p class="cta-desc">Déjenos su correo y nos ponemos en contacto para discutir cómo podemos apoyar su proyecto.</p>
+    <div id="contact-form" style="margin-bottom:1.5rem">
+      <div class="cf-group">
+        <input type="text" id="cf-name" placeholder="Su nombre" class="cf-input">
+        <input type="email" id="cf-email" placeholder="correo@ejemplo.com" class="cf-input">
+      </div>
+      <textarea id="cf-msg" placeholder="Cuéntenos brevemente su proyecto o consulta..." rows="3" class="cf-textarea"></textarea>
+      <button id="cf-btn" class="cf-btn">Enviar mensaje</button>
+    </div>
+    <div id="cf-success" style="display:none;background:rgba(107,143,170,.1);border:1px solid rgba(107,143,170,.35);border-radius:8px;padding:1.5rem 2rem;max-width:500px;margin:0 auto">
+      <div style="font-size:2rem;margin-bottom:.5rem">✓</div>
+      <p style="font-family:Georgia,serif;font-size:1.1rem;color:#89AEC1;font-weight:700;margin-bottom:.4rem">¡Mensaje recibido!</p>
+      <p style="font-size:.88rem;color:#9BA3B2;font-family:Arial,sans-serif">Nos pondremos en contacto con usted a la brevedad en <span id="cf-sent-email" style="color:#6B8FAA"></span></p>
+    </div>
+    <p style="margin-top:1.5rem;font-size:.8rem;color:#3E4452;font-family:Arial,sans-serif">
+      También puede escribirnos directamente a
+      <a href="mailto:contacto@analiticalatam.com" style="color:#6B8FAA;text-decoration:none">contacto@analiticalatam.com</a>
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo"><span class="a">ANALÍTICA</span><span class="l">LATAM</span></div>
+      <p>Análisis de procesos políticos en América Latina desde una perspectiva comparada.</p>
+    </div>
+    <div class="footer-col"><h4>Países</h4><ul>
+      <li><a href="#paises">🇵🇪 Perú</a></li><li><a href="#paises">🇪🇨 Ecuador</a></li>
+      <li><a href="#paises">🇨🇱 Chile</a></li><li><a href="#paises">🇲🇽 México</a></li>
+      <li><a href="#paises">🇨🇴 Colombia</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Secciones</h4><ul>
+      <li><a href="#equipo">Equipo</a></li><li><a href="#analisis">Análisis</a></li>
+      <li><a href="#videos">Videos</a></li><li><a href="#servicios">Servicios</a></li>
+      <li><a href="#cta">Contacto</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Redes</h4><ul>
+      <li><a href="https://twitter.com/analiticaLatam">Twitter / X</a></li>
+      <li><a href="#">YouTube</a></li>
+      <li><a href="mailto:contacto@analiticalatam.com">Email</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 AnalíticaLatam. Todos los derechos reservados.</p>
+    <div class="social-links">
+      <a href="https://twitter.com/analiticaLatam">@analiticaLatam</a>
+      <a href="mailto:contacto@analiticalatam.com">contacto@analiticalatam.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Country panels
+function selectCountry(idx){
+  for(var i=0;i<5;i++){
+    document.getElementById('card-'+i).classList.remove('active');
+    document.getElementById('panel-'+i).classList.remove('active');
+  }
+  document.getElementById('card-'+idx).classList.add('active');
+  document.getElementById('panel-'+idx).classList.add('active');
+  // resaltar encabezados de cobertura y videos
+  document.getElementById('cr-label').classList.add('highlight');
+  document.getElementById('cr-title').classList.add('highlight');
+  document.getElementById('vid-label').classList.add('highlight');
+  document.getElementById('vid-title').classList.add('highlight');
+}
+var autoTimer;
+function startAuto(){
+  if(autoTimer) clearInterval(autoTimer);
+  autoTimer=setInterval(function(){
+    var cur=document.querySelector('.cc.active');
+    var idx=cur?parseInt(cur.getAttribute('data-country')):0;
+    var next=(idx+1)%5;
+    selectCountry(next);
+  },8000);
+}
+function stopAuto(){if(autoTimer){clearInterval(autoTimer);autoTimer=null;}}
+document.querySelectorAll('.cc').forEach(function(el){
+  el.addEventListener('click',function(){
+    stopAuto();
+    selectCountry(parseInt(this.getAttribute('data-country')));
+    setTimeout(startAuto,8000);
+  });
+  el.addEventListener('touchstart',function(){stopAuto();},{passive:true});
+});
+startAuto();
+
+// Hero button
+document.getElementById('heroBtn').addEventListener('click',function(){
+  window.location.href='mapa_peru_v10_actualizado.html';
+});
+
+// Scroll reveal
+var revealObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}
+  });
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);});
+
+// Contact form
+function submitForm(){
+  var name=document.getElementById('cf-name').value.trim();
+  var email=document.getElementById('cf-email').value.trim();
+  var msg=document.getElementById('cf-msg').value.trim();
+  var emailRx=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var els={cfName:document.getElementById('cf-name'),cfEmail:document.getElementById('cf-email'),cfMsg:document.getElementById('cf-msg')};
+  var valid=true;
+  if(!name){els.cfName.classList.add('error');valid=false;}
+  if(!emailRx.test(email)){els.cfEmail.classList.add('error');valid=false;}
+  if(!msg){els.cfMsg.classList.add('error');valid=false;}
+  if(!valid) return;
+  document.getElementById('cf-sent-email').textContent=email;
+  document.getElementById('contact-form').style.display='none';
+  document.getElementById('cf-success').style.display='block';
+}
+document.getElementById('cf-btn').addEventListener('click',submitForm);
+document.querySelectorAll('.cf-input,.cf-textarea').forEach(function(el){
+  el.addEventListener('blur',function(){this.classList.remove('error');});
+});
+
+// Hamburger menu
+var hamburger=document.getElementById('hamburger');
+var mobileMenu=document.getElementById('mobileMenu');
+hamburger.addEventListener('click',function(){
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('open');
+  document.body.style.overflow=mobileMenu.classList.contains('open')?'hidden':'';
+});
+document.querySelectorAll('.mobile-link').forEach(function(link){
+  link.addEventListener('click',function(){
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow='';
+  });
+});
+
+// Navbar scroll
+window.addEventListener('scroll',function(){
+  document.getElementById('navbar').style.background=window.scrollY>60?'rgba(28,31,38,.98)':'rgba(28,31,38,.93)';
+});
+</script>
+</body>
+</html>

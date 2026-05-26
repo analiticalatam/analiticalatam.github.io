@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1.0'>
+<title>Votación Peruanos en el Extranjero — Perú 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f0f0f;color:#f0ede8;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:28px 16px}
+h1{font-family:Georgia,serif;font-size:24px;font-weight:700;color:#f0ede8;margin-bottom:2px}
+.sub{font-size:11px;color:#666;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+.stats{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;justify-content:center}
+.stat{background:#141414;border:.5px solid #1e1e1e;border-radius:8px;padding:7px 12px;text-align:center;min-width:72px}
+.stat .v{font-size:15px;font-weight:700;color:#f0ede8}
+.stat .l{font-size:8px;color:#777;text-transform:uppercase;letter-spacing:.06em;margin-top:1px}
+.legend{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-bottom:14px}
+.leg-item{display:flex;align-items:center;gap:4px;font-size:10px;color:#aaa;padding:3px 7px;background:#141414;border:.5px solid #1e1e1e;border-radius:4px}
+.leg-dot{width:8px;height:8px;border-radius:50%}
+.wrap{width:100%;max-width:1000px;overflow-y:auto;max-height:calc(100vh-240px);border:.5px solid #1a1a1a;border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:11px}
+th{font-size:8px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#666;text-align:left;padding:6px 5px;border-bottom:1px solid #222;position:sticky;top:0;background:#0f0f0f;z-index:1;white-space:nowrap}
+th.r{text-align:right}
+td{padding:4px 5px;border-bottom:.5px solid #181818;color:#999;white-space:nowrap}
+td.r{text-align:right;font-weight:600;color:#f0ede8;font-variant-numeric:tabular-nums}
+.cont{font-size:9px;font-weight:600;color:#666;letter-spacing:.06em;text-transform:uppercase;padding:6px 5px 2px}
+.win-dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:4px;vertical-align:middle}
+.win-name{vertical-align:middle;font-size:10px}
+a{color:#666;text-decoration:none;margin-top:16px;font-size:11px;transition:color .12s}
+a:hover{color:#d4904a}
+@media(max-width:600px){
+  body{padding:12px 6px}
+  h1{font-size:18px}
+  table{font-size:10px}
+  td,th{padding:3px 4px}
+}
+</style>
+</head>
+<body>
+<h1>Votación de Peruanos en el Extranjero</h1>
+<div class='sub'>Elecciones Presidenciales 2026 · ONPE</div>
+
+<div class='stats'>
+  <div class='stat'><div class='v' id='s1'>—</div><div class='l'>Hábiles</div></div>
+  <div class='stat'><div class='v' id='s2'>—</div><div class='l'>Emitidos</div></div>
+  <div class='stat'><div class='v' id='s3'>—</div><div class='l'>Válidos</div></div>
+  <div class='stat'><div class='v' id='s4'>—</div><div class='l'>Blancos</div></div>
+  <div class='stat'><div class='v' id='s5'>—</div><div class='l'>Nulos</div></div>
+  <div class='stat'><div class='v' id='s6'>—</div><div class='l'>Países</div></div>
+</div>
+
+<div class='legend' id='legend'></div>
+
+<div class='wrap'>
+<table>
+<thead><tr><th>País</th><th class='r'>Hábiles</th><th class='r'>Emitidos</th><th class='r'>% Part.</th><th class='r'>Válidos</th><th class='r'>Votos&nbsp;Gan.</th><th class='r'>B+N</th><th class='r'>Dif.</th><th class='r'>Ganador</th></tr></thead>
+<tbody id='tbody'></tbody>
+</table>
+</div>
+
+  <div style='margin-top:16px;display:flex;gap:12px;align-items:center;padding-bottom:10px'>
+    <a href='mapa_peru_v10_actualizado.html' style='display:inline-flex;align-items:center;gap:6px;color:#aaa;text-decoration:none;font-size:13px;font-weight:600;padding:8px 18px;border:.5px solid #444;border-radius:8px;transition:all .12s' onmouseover="this.style.borderColor='#d4904a';this.style.color='#f0ede8'" onmouseout="this.style.borderColor='#444';this.style.color='#aaa'">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Volver al mapa
+    </a>
+    <span style='font-size:11px;color:#555'>Mapa electoral presidencial 2026</span>
+  </div>
+
+<script>
+const RAW=[
+["AMERICA","ANTILLAS HOLANDESAS","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",95,269,850,386,103,14],
+["AMERICA","ARGENTINA","KEIKO SOFIA FUJIMORI HIGUCHI",7894,34284,145893,56904,17804,4816],
+["AMERICA","BOLIVIA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",934,4067,9982,5695,1321,307],
+["AMERICA","BRASIL","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",1180,4917,19532,6473,1176,380],
+["AMERICA","CANADA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",3519,7712,24136,8751,896,143],
+["AMERICA","CHILE","KEIKO SOFIA FUJIMORI HIGUCHI",9285,40016,137987,66567,15553,10998],
+["AMERICA","COLOMBIA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",601,1773,6150,2305,432,100],
+["AMERICA","COSTA RICA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",541,1206,3264,1393,154,33],
+["AMERICA","CUBA","MARIA SOLEDAD PEREZ TELLO",3,10,137,15,4,1],
+["AMERICA","ECUADOR","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",509,1817,6989,3171,1028,326],
+["AMERICA","EL SALVADOR","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",23,57,171,75,15,3],
+["AMERICA","ESTADOS UNIDOS","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",26409,60572,368338,71498,8835,2091],
+["AMERICA","GUATEMALA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",112,197,521,216,14,5],
+["AMERICA","GUAYANA FRANCESA","KEIKO SOFIA FUJIMORI HIGUCHI",54,213,642,284,60,11],
+["AMERICA","HONDURAS","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",29,59,273,63,0,4],
+["AMERICA","MEXICO","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",673,1527,6486,1687,98,62],
+["AMERICA","NICARAGUA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",22,56,185,71,15,0],
+["AMERICA","PANAMA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",489,1183,3580,1545,288,74],
+["AMERICA","PARAGUAY","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",282,583,1802,780,154,43],
+["AMERICA","PUERTO RICO","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",113,238,818,269,27,4],
+["AMERICA","REP. DOMINICANA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",174,596,1401,694,75,23],
+["AMERICA","TRINIDAD Y TOBAGO","JORGE NIETO MONTESINOS",6,11,93,11,0,0],
+["AMERICA","URUGUAY","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",188,842,1952,1072,184,46],
+["EUROPA","ALEMANIA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",1150,3905,13471,4379,388,86],
+["EUROPA","ANDORRA","CARLOS GONSALO ALVAREZ LOAYZA",18,80,247,130,20,30],
+["EUROPA","AUSTRIA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",96,341,1176,388,42,5],
+["EUROPA","BELGICA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",350,1523,4009,1873,281,69],
+["EUROPA","BIELORRUSIA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",6,17,30,17,0,0],
+["EUROPA","DINAMARCA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",52,177,675,195,14,4],
+["EUROPA","ESPANA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",14262,69599,219545,87072,12835,4638],
+["EUROPA","FINLANDIA","JORGE NIETO MONTESINOS",32,104,459,116,11,1],
+["EUROPA","FRANCIA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",1010,4459,14207,5368,765,144],
+["EUROPA","GRAN BRETANA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",502,1501,6279,1702,155,46],
+["EUROPA","GRECIA","RICARDO PABLO BELMONT CASSINELLI",6,36,329,47,8,3],
+["EUROPA","HOLANDA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",275,890,2550,959,50,19],
+["EUROPA","HUNGRIA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",35,101,322,109,6,2],
+["EUROPA","IRLANDA","JORGE NIETO MONTESINOS",24,85,331,93,6,2],
+["EUROPA","ITALIA","RICARDO PABLO BELMONT CASSINELLI",8347,47970,123188,61037,9683,3384],
+["EUROPA","LUXEMBURGO","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",55,145,354,182,33,4],
+["EUROPA","MALTA","JORGE NIETO MONTESINOS",6,17,37,17,0,0],
+["EUROPA","NORUEGA","JORGE NIETO MONTESINOS",35,143,534,155,10,2],
+["EUROPA","POLONIA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",33,97,409,106,8,1],
+["EUROPA","PORTUGAL","JORGE NIETO MONTESINOS",71,221,694,241,14,6],
+["EUROPA","REP. CHECA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",33,107,279,118,11,0],
+["EUROPA","RUMANIA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",9,45,145,50,3,2],
+["EUROPA","RUSIA","PABLO ALFONSO LOPEZ CHAU NAVA",23,136,636,166,23,7],
+["EUROPA","SUECIA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",317,1115,4107,1321,185,21],
+["EUROPA","SUIZA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",819,2247,9366,2688,357,84],
+["ASIA","CHINA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",48,141,833,174,25,8],
+["ASIA","COREA","JORGE NIETO MONTESINOS",35,111,379,123,10,2],
+["ASIA","FILIPINAS","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",4,11,49,13,2,0],
+["ASIA","INDIA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",4,10,92,11,1,0],
+["ASIA","INDONESIA","JORGE NIETO MONTESINOS",3,10,22,10,0,0],
+["ASIA","JAPON","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",2899,7596,37660,9466,1389,481],
+["ASIA","MALASIA","JORGE NIETO MONTESINOS",4,7,23,8,0,1],
+["ASIA","SINGAPUR","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",15,34,104,35,1,0],
+["ASIA","TAILANDIA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",9,33,92,34,1,0],
+["ASIA","TURQUIA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",12,35,91,41,4,2],
+["ASIA","VIETNAM","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",2,5,17,5,0,0],
+["OCEANIA","AUSTRALIA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",884,2141,7077,2381,191,49],
+["OCEANIA","NUEVA ZELANDA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",99,229,841,251,17,5],
+["AFRICA","ARGELIA","CARLOS GONSALO ALVAREZ LOAYZA",4,9,29,10,1,0],
+["AFRICA","EGIPTO","MARIO ENRIQUE VIZCARRA CORNEJO",4,15,40,17,1,1],
+["AFRICA","KENIA","JORGE NIETO MONTESINOS",2,3,12,3,0,0],
+["AFRICA","MARRUECOS","JORGE NIETO MONTESINOS",3,9,59,11,2,0],
+["AFRICA","SUDAFRICA","RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA",17,27,243,30,3,0]
+];
+
+const COLORS={
+  "RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA":"#00b4d8",
+  "KEIKO SOFIA FUJIMORI HIGUCHI":"#e67e22",
+  "RICARDO PABLO BELMONT CASSINELLI":"#2e7d32",
+  "JORGE NIETO MONTESINOS":"#f9c80e",
+  "CARLOS GONSALO ALVAREZ LOAYZA":"#9c27b0",
+  "PABLO ALFONSO LOPEZ CHAU NAVA":"#607d8b",
+  "MARIA SOLEDAD PEREZ TELLO":"#ff6f00",
+  "MARIO ENRIQUE VIZCARRA CORNEJO":"#795548"
+};
+const SHORT={
+  "RAFAEL BERNARDO LÓPEZ ALIAGA CAZORLA":"López Aliaga",
+  "KEIKO SOFIA FUJIMORI HIGUCHI":"Fujimori",
+  "RICARDO PABLO BELMONT CASSINELLI":"Belmont",
+  "JORGE NIETO MONTESINOS":"Nieto",
+  "CARLOS GONSALO ALVAREZ LOAYZA":"Álvarez L.",
+  "PABLO ALFONSO LOPEZ CHAU NAVA":"López Chau",
+  "MARIA SOLEDAD PEREZ TELLO":"Pérez Tello",
+  "MARIO ENRIQUE VIZCARRA CORNEJO":"Vizcarra"
+};
+const fmt=n=>n.toLocaleString('es-PE');
+
+document.getElementById('s1').textContent=fmt(1192224);
+document.getElementById('s2').textContent=fmt(411077);
+document.getElementById('s3').textContent=fmt(307692);
+document.getElementById('s4').textContent=fmt(74792);
+document.getElementById('s5').textContent=fmt(28593);
+document.getElementById('s6').textContent=RAW.length;
+
+const lg=document.getElementById('legend');
+Object.entries(COLORS).forEach(([k,c])=>{
+  const d=document.createElement('div');d.className='leg-item';
+  d.innerHTML='<span class="leg-dot" style="background:'+c+'"></span>'+SHORT[k];
+  lg.appendChild(d);
+});
+
+const tb=document.getElementById('tbody');
+let lastCont='';
+let tH=0,tE=0,tV=0,tWV=0,tB=0,tN=0;
+RAW.forEach(function(r){
+  var cont=r[0],pais=r[1],winner=r[2],wv=r[3],tv=r[4],h=r[5],e=r[6],b=r[7],n=r[8];
+  tH+=h;tE+=e;tV+=tv;tWV+=wv;tB+=b;tN+=n;
+  if(cont!==lastCont){
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td class="cont" colspan="9">'+cont+'</td>';
+    tb.appendChild(tr);
+    lastCont=cont;
+  }
+  var tr=document.createElement('tr');
+  var c=COLORS[winner]||'#666';
+  var s=SHORT[winner]||winner;
+  var pp=h>0?(e/h*100).toFixed(1):'-';
+  var dif=wv-(b+n);
+  var difC=dif>=0?'#4caf50':'#d97a7a';
+  var difS=dif>=0?'+'+fmt(dif):fmt(dif);
+  tr.innerHTML=
+    '<td style="padding-left:14px">'+pais+'</td>'+
+    '<td class="r">'+fmt(h)+'</td>'+
+    '<td class="r">'+fmt(e)+'</td>'+
+    '<td class="r" style="color:#888;font-weight:400">'+pp+'%</td>'+
+    '<td class="r">'+fmt(tv)+'</td>'+
+    '<td class="r">'+fmt(wv)+'</td>'+
+    '<td class="r" style="color:#d97a7a">'+fmt(b+n)+'</td>'+
+    '<td class="r" style="color:'+difC+';font-weight:700">'+difS+'</td>'+
+    '<td class="r"><span class="win-dot" style="background:'+c+'"></span><span class="win-name">'+s+'</span></td>';
+  tb.appendChild(tr);
+});
+var tr=document.createElement('tr');
+var tdif=tWV-(tB+tN);
+var tdifC=tdif>=0?'#4caf50':'#d97a7a';
+var tdifS=tdif>=0?'+'+fmt(tdif):fmt(tdif);
+tr.innerHTML=
+  '<td style="padding:6px 5px;font-weight:600;color:#aaa;border-top:1px solid #333">Total</td>'+
+  '<td class="r" style="padding:6px 5px;border-top:1px solid #333;color:#f0ede8;font-weight:700">'+fmt(tH)+'</td>'+
+  '<td class="r" style="padding:6px 5px;border-top:1px solid #333;color:#f0ede8;font-weight:700">'+fmt(tE)+'</td>'+
+  '<td class="r" style="padding:6px 5px;border-top:1px solid #333;color:#888;font-weight:400">'+(tH>0?(tE/tH*100).toFixed(1):'-')+'%</td>'+
+  '<td class="r" style="padding:6px 5px;border-top:1px solid #333;color:#f0ede8;font-weight:700">'+fmt(tV)+'</td>'+
+  '<td class="r" style="padding:6px 5px;border-top:1px solid #333;color:#f0ede8;font-weight:700">'+fmt(tWV)+'</td>'+
+  '<td class="r" style="padding:6px 5px;border-top:1px solid #333;color:#d97a7a;font-weight:700">'+fmt(tB+tN)+'</td>'+
+  '<td class="r" style="padding:6px 5px;border-top:1px solid #333;color:'+tdifC+';font-weight:700">'+tdifS+'</td>'+
+  '<td style="padding:6px 5px;border-top:1px solid #333"></td>';
+tb.appendChild(tr);
+</script>
+</body>
+</html>
